@@ -10,14 +10,14 @@ CREATE TABLE LoanOfficers (
 
 -- Insert data for 8 Loan Officers with explicit IDs
 INSERT INTO LoanOfficers (LoanOfficerID, firstname, lastname) VALUES
-(1, 'John', 'Doe'),
-(2, 'Jane', 'Smith'),
-(3, 'Robert', 'Johnson'),
-(4, 'Emily', 'Davis'),
-(5, 'Michael', 'Wilson'),
-(6, 'Laura', 'Brown'),
-(7, 'Daniel', 'Miller'),
-(8, 'Amanda', 'Anderson');
+(1, 'Gela', 'Gnolidze'),
+(2, 'Suliko', 'Sulikiani'),
+(3, 'Jemal', 'Kverenchxiladze'),
+(4, 'Bichola', 'Gazdeliani'),
+(5, 'Luka', 'Khitaridze'),
+(6, 'Levani', 'Bichashvili'),
+(7, 'Zaal', 'Jangavadze'),
+(8, 'Lela', 'Kozanashvili');
 
 
 -- Create LoanIssued table
@@ -55,11 +55,10 @@ INSERT INTO LoanIssued (OfficerID, AmountOfLoan, Currency) VALUES
 
 
 -- and selecting loan officer(s) who have exclusively given loans in GEL
-SELECT lo.*
-FROM LoanOfficers lo
+SELECT *
+FROM LoanOfficers
 WHERE NOT EXISTS (
     SELECT 1
-    FROM LoanIssued li
-    WHERE lo.LoanOfficerID = li.OfficerID
-    AND li.Currency <> 'GEL'
+    FROM LoanIssued
+    WHERE LoanOfficerID = OfficerID AND Currency <> 'GEL'
 );
